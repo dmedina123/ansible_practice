@@ -16,3 +16,4 @@
     yum:
       name: mod_php
       state: latest
+  
