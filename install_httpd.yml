@@ -4,16 +4,25 @@
   become: true
   tasks: 
 
-  - name: update repo
+  - name: install apache,php,nfs,update package
     yum:
+      name:
+        - httpd
+        - php
+        - bind-utils
       update_cache: yes
+      state: latest
 
-  - name: install apache package
+  - name: install updates
     yum:
-      name: httpd
-      state: latest
-  - name: install php support for httpd
+      update_only: yes
+      update_cache: yes
+ 
+- hosts: file_server
+  become: true
+  tasks:
+
+  - name: install mariadb package 
     yum:
-      name: mod_php
+      name: mariadb
       state: latest
-  
